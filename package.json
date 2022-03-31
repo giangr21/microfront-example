@@ -1,45 +1,49 @@
 {
-  "name": "nitro",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@chakra-ui/react": "^1.8.7",
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
-    "@testing-library/jest-dom": "^5.9.0",
-    "@testing-library/react": "^10.2.1",
-    "@testing-library/user-event": "^12.0.2",
-    "@types/jest": "^25.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "framer-motion": "^4.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-icons": "^3.0.0",
-    "react-scripts": "5.0.0",
-    "typescript": "^4.3.5",
-    "web-vitals": "^0.2.2"
-  },
+  "name": "@nitro/root-config",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "webpack serve --port 9000 --env isLocal",
+    "lint": "eslint src --ext js,ts,tsx",
+    "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "prepare": "husky install",
+    "build": "concurrently yarn:build:*",
+    "build:webpack": "webpack --mode=production",
+    "build:types": "tsc"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/runtime": "^7.15.3",
+    "concurrently": "^6.2.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "html-webpack-plugin": "^5.3.2",
+    "husky": "^7.0.2",
+    "jest": "^27.0.6",
+    "jest-cli": "^27.0.6",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1",
+    "serve": "^12.0.0",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0",
+    "webpack-merge": "^5.8.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "eslint-config-ts-important-stuff": "^1.1.0",
+    "typescript": "^4.3.5",
+    "webpack-config-single-spa-ts": "^4.0.0",
+    "ts-config-single-spa": "^3.0.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "dependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/systemjs": "^6.1.1",
+    "single-spa": "^5.9.3",
+    "@types/webpack-env": "^1.16.2"
+  },
+  "types": "dist/nitro-root-config.d.ts"
 }
